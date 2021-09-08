@@ -1,5 +1,7 @@
 *.json
 dist/
+build
+coverage
 e2e/
 node_modules/
 *.md
