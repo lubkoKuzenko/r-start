@@ -9,6 +9,7 @@ import {
   LocationMarkerIcon,
   PencilIcon
 } from '@heroicons/react/solid';
+import { NavLink } from 'react-router-dom';
 import { Menu, Transition } from '@headlessui/react';
 import classNames from 'classnames';
 import { people } from './people';
@@ -84,20 +85,20 @@ const TailWindPage: React.FC = () => {
               <Menu.Items className="origin-top-right absolute right-0 mt-2 -mr-1 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
                 <Menu.Item>
                   {({ active }) => (
-                    <a
-                      href="#"
-                      className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}>
+                    <NavLink
+                      className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                      to="/edit">
                       Edit
-                    </a>
+                    </NavLink>
                   )}
                 </Menu.Item>
                 <Menu.Item>
                   {({ active }) => (
-                    <a
-                      href="#"
-                      className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}>
+                    <NavLink
+                      className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                      to="/view">
                       View
-                    </a>
+                    </NavLink>
                   )}
                 </Menu.Item>
               </Menu.Items>
