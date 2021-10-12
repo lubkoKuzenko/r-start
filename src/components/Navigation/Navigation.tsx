@@ -75,6 +75,12 @@ const Navigation: React.FC = () => {
               activeClassName={styles.selected}>
               Query
             </NavLink>
+            <NavLink
+              className={classNames('navbar-item', theme === ThemeEnum.LIGHT ? 'has-text-black' : 'has-text-white')}
+              to="/tailwind"
+              activeClassName={styles.selected}>
+              TailWind
+            </NavLink>
           </div>
 
           <LanguageSwitch language={state.language} handleLanguageChange={handleLanguageChange} />
