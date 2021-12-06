@@ -99,6 +99,12 @@ const Navigation: React.FC = () => {
               activeClassName={styles.selected}>
               Charts
             </NavLink>
+            <NavLink
+              className={classNames('navbar-item', theme === ThemeEnum.LIGHT ? 'has-text-black' : 'has-text-white')}
+              to="/dashboard"
+              activeClassName={styles.selected}>
+              Dashboard
+            </NavLink>
           </div>
 
           <LanguageSwitch language={state.language} handleLanguageChange={handleLanguageChange} />

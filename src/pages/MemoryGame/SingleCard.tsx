@@ -1,10 +1,10 @@
 import { ISingleCard } from "./interfaces";
 
-
-
 const SingleCard = ({ card, handleClick, turned }: ISingleCard) => {
+  const isTurned = turned ? 'turnedd card-item' : 'card-item';
+  
   return (
-    <div className={turned ? 'turnedd card-item' : 'card-item'} >
+    <div className={isTurned} >
       <img className="front-side image" src={card.src} alt="" />
       <img 
         className="back-side" 
