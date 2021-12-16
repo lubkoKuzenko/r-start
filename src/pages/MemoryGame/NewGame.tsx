@@ -60,6 +60,8 @@ const Newgame = () => {
     setDisable(false);
   }
 
+  const isTurned = (card: ICard) => card === first || card === second || card.matched
+
   return (
     <div className='columns my-4 '>
       <div className="column is-one-fifth">
@@ -69,7 +71,7 @@ const Newgame = () => {
             <option value={4}>4x4</option>
             <option value={6}>6x6</option>
           </select>
-          <button className='button is-outlined mt-5 is-primary' onClick={suffleArray}>New game</button>
+          <button className='button is-outlined mt-5 is-primary' onClick={() => suffleArray()}>New game</button>
         </div>
       </div>
       <div className="column">
@@ -79,7 +81,7 @@ const Newgame = () => {
               key={card.id} 
               card={card} 
               handleClick={handleClick}
-              turned={card === first || card === second || card.matched}
+              turned={isTurned(card)}
             />
           ))}
         </div>
