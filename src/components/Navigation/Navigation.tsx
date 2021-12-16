@@ -30,9 +30,37 @@ const Navigation: React.FC = () => {
 
   const handleLogOut = () => {
     localStorage.removeItem('token');
-    dispatch({type: 'SET_LOGIN', payload: false});
-    dispatch({type: 'SET_USER', payload: null});
+    dispatch({ type: 'SET_LOGIN', payload: false });
+    dispatch({ type: 'SET_USER', payload: null });
+  };
+
+  enum Pages {
+    home = '/',
+    context = '/context',
+    users = '/users',
+    query = '/query',
+    formik = '/formik',
+    hook_form = '/hook-form',
+    memory_game = '/memory-game',
+    charts = '/charts',
+    map = '/map',
+    code_editor = '/code-editor',
+    calendar = '/calendar'
   }
+
+  const routes = [
+    { title: 'Home', to: Pages.home, exact: true },
+    { title: 'Context', to: Pages.context },
+    { title: 'Users', to: Pages.users },
+    { title: 'Query', to: Pages.query },
+    { title: 'Formik', to: Pages.formik },
+    { title: 'HookForm', to: Pages.hook_form },
+    { title: 'Memory Game', to: Pages.memory_game },
+    { title: 'Charts', to: Pages.charts },
+    { title: 'Map', to: Pages.map },
+    { title: 'Code Editor', to: Pages.code_editor },
+    { title: 'Calendar', to: Pages.calendar }
+  ];
 
   return (
     <nav
@@ -46,59 +74,20 @@ const Navigation: React.FC = () => {
       <div className="container">
         <div className={`columns m-0 ${styles.fullWidth}`}>
           <div className="column is-flex is-two-thirds">
-            <NavLink
-              className={classNames(
-                'navbar-item',
-                theme === ThemeEnum.LIGHT ? 'has-text-black' : 'has-text-white',
-                styles.navbarBrandText
-              )}
-              exact
-              to="/"
-              activeClassName={styles.selected}>
-              Home
-            </NavLink>
-            <NavLink
-              className={classNames('navbar-item', theme === ThemeEnum.LIGHT ? 'has-text-black' : 'has-text-white')}
-              to="/context"
-              activeClassName={styles.selected}>
-              Context
-            </NavLink>
-            <NavLink
-              className={classNames('navbar-item', theme === ThemeEnum.LIGHT ? 'has-text-black' : 'has-text-white')}
-              to="/users"
-              activeClassName={styles.selected}>
-              Users
-            </NavLink>
-            <NavLink
-              className={classNames('navbar-item', theme === ThemeEnum.LIGHT ? 'has-text-black' : 'has-text-white')}
-              to="/query"
-              activeClassName={styles.selected}>
-              Query
-            </NavLink>
-            <NavLink
-              className={classNames('navbar-item', theme === ThemeEnum.LIGHT ? 'has-text-black' : 'has-text-white')}
-              to="/formik"
-              activeClassName={styles.selected}>
-              Formik
-            </NavLink>
-            <NavLink
-              className={classNames('navbar-item', theme === ThemeEnum.LIGHT ? 'has-text-black' : 'has-text-white')}
-              to="/hook-form"
-              activeClassName={styles.selected}>
-              HookForm
-            </NavLink>
-            <NavLink
-              className={classNames('navbar-item', theme === ThemeEnum.LIGHT ? 'has-text-black' : 'has-text-white')}
-              to="/memory-game"
-              activeClassName={styles.selected}>
-              Memory Game
-            </NavLink>
-            <NavLink
-              className={classNames('navbar-item', theme === ThemeEnum.LIGHT ? 'has-text-black' : 'has-text-white')}
-              to="/charts"
-              activeClassName={styles.selected}>
-              Charts
-            </NavLink>
+            {routes.map(route => (
+              <NavLink
+                key={route.to}
+                className={classNames(
+                  'navbar-item',
+                  theme === ThemeEnum.LIGHT ? 'has-text-black' : 'has-text-white',
+                  styles.navbarBrandText
+                )}
+                exact={route.exact}
+                to={route.to}
+                activeClassName={styles.selected}>
+                {route.title}
+              </NavLink>
+            ))}
           </div>
 
           <LanguageSwitch language={state.language} handleLanguageChange={handleLanguageChange} />
