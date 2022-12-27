@@ -47,98 +47,91 @@ const Navigation: React.FC = () => {
         <div className={`columns m-0 ${styles.fullWidth}`}>
           <div className="column is-flex is-two-thirds">
             <NavLink
-              className={isActive => (
-                isActive ? styles.selected : '',
+              className={({ isActive }) =>
                 classNames(
                   'navbar-item',
                   theme === ThemeEnum.LIGHT ? 'has-text-black' : 'has-text-white',
-                  styles.navbarBrandText
+                  styles.navbarBrandText,
+                  isActive ? styles.selected : ''
                 )
-              )}
+              }
               to="/">
               Home
             </NavLink>
             <NavLink
-              className={isActive => (
-                isActive ? styles.selected : '',
+              className={({ isActive }) =>
                 classNames(
                   'navbar-item',
                   theme === ThemeEnum.LIGHT ? 'has-text-black' : 'has-text-white',
-                  styles.selected
+                  isActive ? styles.selected : ''
                 )
-              )}
+              }
               to="/context">
               Context
             </NavLink>
             <NavLink
-              className={isActive => (
-                isActive ? styles.selected : '',
+              className={({ isActive }) =>
                 classNames(
                   'navbar-item',
                   theme === ThemeEnum.LIGHT ? 'has-text-black' : 'has-text-white',
-                  styles.selected
+                  isActive ? styles.selected : ''
                 )
-              )}
+              }
               to="/users">
               Users
             </NavLink>
             <NavLink
-              className={isActive => (
-                isActive ? styles.selected : '',
+              className={({ isActive }) =>
                 classNames(
                   'navbar-item',
                   theme === ThemeEnum.LIGHT ? 'has-text-black' : 'has-text-white',
-                  styles.selected
+                  isActive ? styles.selected : ''
                 )
-              )}
+              }
               to="/query">
               Query
             </NavLink>
             <NavLink
-              className={isActive => (
-                isActive ? styles.selected : '',
+              className={({ isActive }) =>
                 classNames(
                   'navbar-item',
                   theme === ThemeEnum.LIGHT ? 'has-text-black' : 'has-text-white',
-                  styles.selected
+                  isActive ? styles.selected : ''
                 )
-              )}
+              }
               to="/formik">
               Formik
             </NavLink>
             <NavLink
-              className={isActive => (
-                isActive ? styles.selected : '',
+              className={({ isActive }) =>
                 classNames(
                   'navbar-item',
                   theme === ThemeEnum.LIGHT ? 'has-text-black' : 'has-text-white',
-                  styles.selected
+                  isActive ? styles.selected : ''
                 )
-              )}
+              }
               to="/hook-form">
               HookForm
             </NavLink>
             <NavLink
-              className={isActive => (
-                isActive ? styles.selected : '',
+              className={({ isActive }) =>
                 classNames(
                   'navbar-item',
                   theme === ThemeEnum.LIGHT ? 'has-text-black' : 'has-text-white',
-                  styles.selected
+                  isActive ? styles.selected : ''
                 )
-              )}
+              }
               to="/memory-game">
               Memory Game
             </NavLink>
             <NavLink
-              className={isActive => (
-                isActive ? styles.selected : '',
+              className={({ isActive }) =>
                 classNames(
                   'navbar-item',
                   theme === ThemeEnum.LIGHT ? 'has-text-black' : 'has-text-white',
-                  styles.selected
+                  isActive ? styles.selected : ''
                 )
-              )}
+              }
               to="/charts">
               Charts
             </NavLink>

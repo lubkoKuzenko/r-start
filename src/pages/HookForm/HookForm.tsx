@@ -32,9 +32,7 @@ const HookForm: React.FC = () => {
         <div className="tabs">
           <ul className="column is-full">
             <li className={getNavLinkClass(`basic`)}>
-              <NavLink to={`basic`} className={isActive => (isActive ? 'is-active' : '')}>
-                Basic Form
-              </NavLink>
+              <NavLink to={`basic`}>Basic Form</NavLink>
             </li>
             <li className={getNavLinkClass(`custom-validation`)}>
               <NavLink to={`custom-validation`}>Custom Validation Form</NavLink>
