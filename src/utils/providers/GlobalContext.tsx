@@ -10,7 +10,7 @@ interface Context {
   property_first: number;
   property_second: string;
   isLogedIn: boolean;
-  user: null | {name: {firstname: string, lastname: string}}
+  user: null | { name: { firstname: string; lastname: string } };
 }
 
 const language = localStorage.getItem(LocalStorageKeysEnum.LANGUAGE);
@@ -18,7 +18,7 @@ const initialContext: Context = {
   language: language !== null ? JSON.parse(language) : LanguageEnum.EN,
   property_first: 0,
   property_second: 'initial value',
-  isLogedIn: false,
+  isLogedIn: true,
   user: null
 };
 
@@ -27,7 +27,7 @@ type Action =
   | { type: 'UPDATE_PROPERTY_SECOND'; payload: string }
   | { type: 'SET_LANGUAGE'; payload: LanguageEnum }
   | { type: 'SET_LOGIN'; payload: boolean }
-  | { type: 'SET_USER'; payload: {name: {firstname: string, lastname: string}} | null };
+  | { type: 'SET_USER'; payload: { name: { firstname: string; lastname: string } } | null };
 
 function reducer(state: Context, action: Action): Context {
   switch (action.type) {

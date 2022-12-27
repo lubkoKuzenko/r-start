@@ -2,6 +2,7 @@ import loadable from '@loadable/component';
 import { Route } from 'react-router-dom';
 import Loader from './components/Loader';
 import { formikRoutes } from './pages/Formik/formik.routes';
+import { hookFormRoutes } from './pages/HookForm/hookForm.routes';
 
 // const Home = loadable(() => import('./pages/Home/Home'), { fallback: <Loader /> });
 // // const LazyCounter = loadable(() => import('./pages/Counter/Counter'), { fallback: <Loader /> });
@@ -38,7 +39,8 @@ export const routes = [
   },
   {
     path: '/hook-form',
-    componentName: 'HookForm'
+    componentName: 'HookForm',
+    children: hookFormRoutes
   },
   {
     path: '/memory-game',

@@ -1,18 +1,17 @@
 import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Routes, Route, NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation, Outlet } from 'react-router-dom';
 import Login from '../Login/Login';
-import { hookFormRoutes } from './hookForm.routes';
 import { GlobalContext } from '../../utils/providers/GlobalContext';
 
-const HookForm: React.FC = (props: any) => {
+const HookForm: React.FC = () => {
   const { state } = useContext(GlobalContext);
 
   const { t } = useTranslation();
-  const { pathname } = useLocation();
+  const location = useLocation();
 
   const getNavLinkClass = (path: string) => {
-    return props.location.pathname === path ? 'is-active' : '';
+    return location.pathname === path ? 'is-active' : '';
   };
 
   if (!state.isLogedIn) {
@@ -51,11 +50,7 @@ const HookForm: React.FC = (props: any) => {
       </div>
 
       <section className="tile is-child notification is-white">
-        <Routes>
-          {hookFormRoutes.map((route, i) => (
-            <Route path={pathname + route.path} element={route.component as any} key={i} />
-          ))}
-        </Routes>
+        <Outlet />
       </section>
     </>
   );

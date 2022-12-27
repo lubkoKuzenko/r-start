@@ -5,23 +5,23 @@ import ReusableForm from './components/ReusableForm';
 
 export const hookFormRoutes = [
   {
-    path: '/basic',
-    component: BasicFormHook
+    path: 'basic',
+    component: <BasicFormHook />
   },
   {
-    path: '/custom-validation',
-    component: CustomValidationForm
+    path: 'custom-validation',
+    component: <CustomValidationForm />
   },
   {
-    path: '/dynamic',
-    component: DynamicForm
+    path: 'dynamic',
+    component: <DynamicForm />
   },
   {
-    path: '/reusable',
-    component: ReusableForm
+    path: 'reusable',
+    component: <ReusableForm />
   },
   {
     path: '*',
-    component: BasicFormHook
+    component: <BasicFormHook />
   }
 ];
