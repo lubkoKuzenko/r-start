@@ -12,10 +12,10 @@ const DynamicForm = () => {
     friends: Yup.array()
       .of(
         Yup.object().shape({
-          name: Yup.string().required(t('GLOBAL.VALIDATION.required'))
+          name: Yup.string().required(t('GLOBAL.VALIDATION.required') as string)
         })
       )
-      .required(t('GLOBAL.VALIDATION.required'))
+      .required(t('GLOBAL.VALIDATION.required') as string)
   });
 
   const initialValues = {

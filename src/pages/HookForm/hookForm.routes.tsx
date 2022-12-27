@@ -6,7 +6,6 @@ import ReusableForm from './components/ReusableForm';
 export const hookFormRoutes = [
   {
     path: '/basic',
-    exact: true,
     component: BasicFormHook
   },
   {

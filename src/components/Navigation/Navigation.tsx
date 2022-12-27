@@ -30,9 +30,9 @@ const Navigation: React.FC = () => {
 
   const handleLogOut = () => {
     localStorage.removeItem('token');
-    dispatch({type: 'SET_LOGIN', payload: false});
-    dispatch({type: 'SET_USER', payload: null});
-  }
+    dispatch({ type: 'SET_LOGIN', payload: false });
+    dispatch({ type: 'SET_USER', payload: null });
+  };
 
   return (
     <nav
@@ -47,56 +47,99 @@ const Navigation: React.FC = () => {
         <div className={`columns m-0 ${styles.fullWidth}`}>
           <div className="column is-flex is-two-thirds">
             <NavLink
-              className={classNames(
-                'navbar-item',
-                theme === ThemeEnum.LIGHT ? 'has-text-black' : 'has-text-white',
-                styles.navbarBrandText
+              className={isActive => (
+                isActive ? styles.selected : '',
+                classNames(
+                  'navbar-item',
+                  theme === ThemeEnum.LIGHT ? 'has-text-black' : 'has-text-white',
+                  styles.navbarBrandText
+                )
               )}
-              exact
-              to="/"
-              activeClassName={styles.selected}>
+              to="/">
               Home
             </NavLink>
             <NavLink
-              className={classNames('navbar-item', theme === ThemeEnum.LIGHT ? 'has-text-black' : 'has-text-white')}
-              to="/context"
-              activeClassName={styles.selected}>
+              className={isActive => (
+                isActive ? styles.selected : '',
+                classNames(
+                  'navbar-item',
+                  theme === ThemeEnum.LIGHT ? 'has-text-black' : 'has-text-white',
+                  styles.selected
+                )
+              )}
+              to="/context">
               Context
             </NavLink>
             <NavLink
-              className={classNames('navbar-item', theme === ThemeEnum.LIGHT ? 'has-text-black' : 'has-text-white')}
-              to="/users"
-              activeClassName={styles.selected}>
+              className={isActive => (
+                isActive ? styles.selected : '',
+                classNames(
+                  'navbar-item',
+                  theme === ThemeEnum.LIGHT ? 'has-text-black' : 'has-text-white',
+                  styles.selected
+                )
+              )}
+              to="/users">
               Users
             </NavLink>
             <NavLink
-              className={classNames('navbar-item', theme === ThemeEnum.LIGHT ? 'has-text-black' : 'has-text-white')}
-              to="/query"
-              activeClassName={styles.selected}>
+              className={isActive => (
+                isActive ? styles.selected : '',
+                classNames(
+                  'navbar-item',
+                  theme === ThemeEnum.LIGHT ? 'has-text-black' : 'has-text-white',
+                  styles.selected
+                )
+              )}
+              to="/query">
               Query
             </NavLink>
             <NavLink
-              className={classNames('navbar-item', theme === ThemeEnum.LIGHT ? 'has-text-black' : 'has-text-white')}
-              to="/formik"
-              activeClassName={styles.selected}>
+              className={isActive => (
+                isActive ? styles.selected : '',
+                classNames(
+                  'navbar-item',
+                  theme === ThemeEnum.LIGHT ? 'has-text-black' : 'has-text-white',
+                  styles.selected
+                )
+              )}
+              to="/formik">
               Formik
             </NavLink>
             <NavLink
-              className={classNames('navbar-item', theme === ThemeEnum.LIGHT ? 'has-text-black' : 'has-text-white')}
-              to="/hook-form"
-              activeClassName={styles.selected}>
+              className={isActive => (
+                isActive ? styles.selected : '',
+                classNames(
+                  'navbar-item',
+                  theme === ThemeEnum.LIGHT ? 'has-text-black' : 'has-text-white',
+                  styles.selected
+                )
+              )}
+              to="/hook-form">
               HookForm
             </NavLink>
             <NavLink
-              className={classNames('navbar-item', theme === ThemeEnum.LIGHT ? 'has-text-black' : 'has-text-white')}
-              to="/memory-game"
-              activeClassName={styles.selected}>
+              className={isActive => (
+                isActive ? styles.selected : '',
+                classNames(
+                  'navbar-item',
+                  theme === ThemeEnum.LIGHT ? 'has-text-black' : 'has-text-white',
+                  styles.selected
+                )
+              )}
+              to="/memory-game">
               Memory Game
             </NavLink>
             <NavLink
-              className={classNames('navbar-item', theme === ThemeEnum.LIGHT ? 'has-text-black' : 'has-text-white')}
-              to="/charts"
-              activeClassName={styles.selected}>
+              className={isActive => (
+                isActive ? styles.selected : '',
+                classNames(
+                  'navbar-item',
+                  theme === ThemeEnum.LIGHT ? 'has-text-black' : 'has-text-white',
+                  styles.selected
+                )
+              )}
+              to="/charts">
               Charts
             </NavLink>
           </div>

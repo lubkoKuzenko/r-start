@@ -6,7 +6,6 @@ import ReusableForm from './components/ReusableForm';
 export const formikRoutes = [
   {
     path: '/basic',
-    exact: true,
     component: BasicForm
   },
   {

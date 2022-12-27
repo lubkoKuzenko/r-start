@@ -1,24 +1,22 @@
 import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Switch, Route, NavLink, useRouteMatch } from 'react-router-dom';
+import { Routes, Route, NavLink, useLocation } from 'react-router-dom';
 import Login from '../Login/Login';
 import { hookFormRoutes } from './hookForm.routes';
 import { GlobalContext } from '../../utils/providers/GlobalContext';
-
 
 const HookForm: React.FC = (props: any) => {
   const { state } = useContext(GlobalContext);
 
   const { t } = useTranslation();
-  let { url, path } = useRouteMatch();
+  const { pathname } = useLocation();
 
   const getNavLinkClass = (path: string) => {
-
     return props.location.pathname === path ? 'is-active' : '';
   };
 
-  if(!state.isLogedIn) {
-    return <Login />
+  if (!state.isLogedIn) {
+    return <Login />;
   }
 
   return (
@@ -34,30 +32,30 @@ const HookForm: React.FC = (props: any) => {
       <div className="tile is-vertical is-12">
         <div className="tabs">
           <ul className="column is-full">
-            <li className={getNavLinkClass(`${url}/basic`)}>
-              <NavLink to={`${url}/basic`} activeClassName="is-active">
+            <li className={getNavLinkClass(`basic`)}>
+              <NavLink to={`basic`} className={isActive => (isActive ? 'is-active' : '')}>
                 Basic Form
               </NavLink>
             </li>
-            <li className={getNavLinkClass(`${url}/custom-validation`)}>
-              <NavLink to={`${url}/custom-validation`}>Custom Validation Form</NavLink>
+            <li className={getNavLinkClass(`custom-validation`)}>
+              <NavLink to={`custom-validation`}>Custom Validation Form</NavLink>
             </li>
-            <li className={getNavLinkClass(`${url}/dynamic`)}>
-              <NavLink to={`${url}/dynamic`}>Dynamic Form</NavLink>
+            <li className={getNavLinkClass(`dynamic`)}>
+              <NavLink to={`dynamic`}>Dynamic Form</NavLink>
             </li>
-            <li className={getNavLinkClass(`${url}/reusable`)}>
-              <NavLink to={`${url}/reusable`}>Reusable Form</NavLink>
+            <li className={getNavLinkClass(`reusable`)}>
+              <NavLink to={`reusable`}>Reusable Form</NavLink>
             </li>
           </ul>
         </div>
       </div>
 
       <section className="tile is-child notification is-white">
-        <Switch>
+        <Routes>
           {hookFormRoutes.map((route, i) => (
-            <Route exact={route.exact || false} path={path + route.path} component={route.component} key={i} />
+            <Route path={pathname + route.path} element={route.component as any} key={i} />
           ))}
-        </Switch>
+        </Routes>
       </section>
     </>
   );

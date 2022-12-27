@@ -2,10 +2,9 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useForm } from 'react-hook-form';
+import { FieldValues, useForm } from 'react-hook-form';
 import { CountryDropdown } from 'react-country-region-selector';
 import DatePicker from 'react-datepicker';
-import { ICustomValidationFormValues } from '../interfaces/custom-validation-form';
 
 const CustomValidationForm = () => {
   const { t } = useTranslation();
@@ -24,17 +23,19 @@ const CustomValidationForm = () => {
 
   const validationSchema = Yup.object({
     fullName: Yup.string()
-      .required(t('GLOBAL.VALIDATION.required'))
+      .required(t('GLOBAL.VALIDATION.required') as string)
       .min(2, 'Mininum 2 characters')
       .max(15, 'Maximum 15 characters'),
     product: Yup.string().required('Please select a product').oneOf(products),
-    country: Yup.string().required(t('GLOBAL.VALIDATION.required')),
-    email: Yup.string().matches(companyEmailRegExp, 'Must be company email').required(t('GLOBAL.VALIDATION.required')),
-    startDate: Yup.string().required(t('GLOBAL.VALIDATION.required')),
+    country: Yup.string().required(t('GLOBAL.VALIDATION.required') as string),
+    email: Yup.string()
+      .matches(companyEmailRegExp, 'Must be company email')
+      .required(t('GLOBAL.VALIDATION.required') as string),
+    startDate: Yup.string().required(t('GLOBAL.VALIDATION.required') as string),
     comment: Yup.string()
       .when('startDate', {
         is: (startDate: Date) => new Date(startDate) >= new Date(),
-        then: Yup.string().required(t('GLOBAL.VALIDATION.required')),
+        then: Yup.string().required(t('GLOBAL.VALIDATION.required') as string),
         otherwise: Yup.string()
       })
       .min(2, 'Mininum 2 characters'),
@@ -51,7 +52,7 @@ const CustomValidationForm = () => {
     resolver: yupResolver(validationSchema)
   });
 
-  const onSubmit = (data: ICustomValidationFormValues) => {
+  const onSubmit = (data: FieldValues) => {
     console.log(data);
     reset();
   };
@@ -65,7 +66,7 @@ const CustomValidationForm = () => {
           </label>
           <div className="control">
             <input type="text" className="input" placeholder="Full name" {...register('fullName')} />
-            <span className="help is-danger">{errors.fullName?.message}</span>
+            <span className="help is-danger">{errors.fullName?.message as string}</span>
           </div>
         </div>
 
@@ -80,7 +81,7 @@ const CustomValidationForm = () => {
                 {productOptions}
               </select>
             </div>
-            <span className="help is-danger">{errors.product?.message}</span>
+            <span className="help is-danger">{errors.product?.message as string}</span>
           </div>
         </div>
 
@@ -93,12 +94,12 @@ const CustomValidationForm = () => {
               <CountryDropdown
                 value={country}
                 onChange={(value: string) => {
-                  register('country', {value});
-                  setCountry(value)
+                  register('country', { value });
+                  setCountry(value);
                 }}
               />
             </div>
-            <span className="help is-danger">{errors.country?.message}</span>
+            <span className="help is-danger">{errors.country?.message as string}</span>
           </div>
         </div>
 
@@ -108,7 +109,7 @@ const CustomValidationForm = () => {
           </label>
           <div className="control">
             <input type="text" className="input" placeholder="Email address" {...register('email')} />
-            <span className="help is-danger">{errors.email?.message}</span>
+            <span className="help is-danger">{errors.email?.message as string}</span>
           </div>
         </div>
 
@@ -124,8 +125,8 @@ const CustomValidationForm = () => {
                   name="startDate"
                   selected={startDate}
                   onChange={(startDate: Date) => {
-                    register('startDate', {value: startDate});
-                    setStartDate(startDate)
+                    register('startDate', { value: startDate });
+                    setStartDate(startDate);
                   }}
                   dateFormat="MM/yyyy"
                   showMonthYearPicker
@@ -134,13 +135,13 @@ const CustomValidationForm = () => {
             </div>
           </div>
           <div className="column is-6">
-            <div >
+            <div>
               <label className="label" htmlFor="comment">
                 Some comment
               </label>
               <div className="control">
                 <input type="text" className="input" placeholder="Comment" {...register('comment')} />
-                <span className="help is-danger">{errors.comment?.message}</span>
+                <span className="help is-danger">{errors.comment?.message as string}</span>
               </div>
             </div>
           </div>
@@ -175,7 +176,7 @@ const CustomValidationForm = () => {
               </div>
             </div>
           </div>
-          <span className="help is-danger">{errors.age?.message}</span>
+          <span className="help is-danger">{errors.age?.message as string}</span>
         </div>
 
         <div className="field">
@@ -199,7 +200,7 @@ const CustomValidationForm = () => {
               </div>
             </div>
           </div>
-          <span className="help is-danger">{errors.meat?.message}</span>
+          <span className="help is-danger">{errors.meat?.message as string}</span>
         </div>
 
         <button type="submit" className="button is-primary">

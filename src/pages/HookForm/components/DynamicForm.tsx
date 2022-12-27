@@ -12,16 +12,21 @@ const DynamicForm = () => {
     friends: Yup.array()
       .of(
         Yup.object().shape({
-          name: Yup.string().required(t('GLOBAL.VALIDATION.required'))
+          name: Yup.string().required(t('GLOBAL.VALIDATION.required') as string)
         })
       )
-      .required(t('GLOBAL.VALIDATION.required'))
+      .required(t('GLOBAL.VALIDATION.required') as string)
   });
 
-  const { register, control, handleSubmit, formState: {errors} } = useForm({
+  const {
+    register,
+    control,
+    handleSubmit,
+    formState: { errors }
+  } = useForm({
     resolver: yupResolver(validationSchema),
     defaultValues: {
-      friends: [{name: ''}]
+      friends: [{ name: '' }]
     }
   });
 
@@ -34,51 +39,45 @@ const DynamicForm = () => {
     console.log(data);
   };
 
-	return (
-		<form onSubmit={handleSubmit(onSubmit)}>
-			<div className="container my-3">
-				<div>
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <div className="container my-3">
+        <div>
           {fields.map((field, index) => {
             return (
               <div className="columns" key={field.id}>
                 <div className="column is-four-fifths">
-                  <label className="label" htmlFor='name'>
-                  Name
+                  <label className="label" htmlFor="name">
+                    Name
                   </label>
-                  <input
-                    placeholder="Your name"
-                    type="text"
-                    className="input"
-                    {...register(`friends.${index}.name`)}
-                  />
+                  <input placeholder="Your name" type="text" className="input" {...register(`friends.${index}.name`)} />
                   {errors.friends && <Error message={errors.friends[index]?.name?.message} />}
                 </div>
                 <div className="column">
-                    <button type="button"  className="button is-link is-light" onClick={() => remove(index)}>
+                  <button type="button" className="button is-link is-light" onClick={() => remove(index)}>
                     Delete
-                    </button>
+                  </button>
                 </div>
               </div>
-            )
+            );
           })}
 
-            <button
-              type="button"
-              className="button is-link is-light"
-              onClick={() => {
-                append({ name: '' });
-              }}
-            >
-              Add Friend
-            </button>
+          <button
+            type="button"
+            className="button is-link is-light"
+            onClick={() => {
+              append({ name: '' });
+            }}>
+            Add Friend
+          </button>
         </div>
-			</div>
+      </div>
 
-			<button type="submit" className="button is-primary" >
-			Submit
-			</button>
-		</form>
-	);
+      <button type="submit" className="button is-primary">
+        Submit
+      </button>
+    </form>
+  );
 };
 
 export default DynamicForm;

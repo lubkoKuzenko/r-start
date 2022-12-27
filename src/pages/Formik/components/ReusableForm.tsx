@@ -9,8 +9,10 @@ const ReusableForm = () => {
   const { t } = useTranslation();
 
   const validationSchema = Yup.object({
-    fullName: Yup.string().required(t('GLOBAL.VALIDATION.required')),
-    email: Yup.string().email(t('GLOBAL.VALIDATION.incorrectEmail')).required(t('GLOBAL.VALIDATION.required'))
+    fullName: Yup.string().required(t('GLOBAL.VALIDATION.required') as string),
+    email: Yup.string()
+      .email(t('GLOBAL.VALIDATION.incorrectEmail') as string)
+      .required(t('GLOBAL.VALIDATION.required') as string)
   });
 
   const initialValues = {

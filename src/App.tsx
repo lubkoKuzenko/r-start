@@ -1,8 +1,8 @@
 import React, { Suspense } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import Navigation from './components/Navigation/Navigation';
 import Loader from './components/Loader';
-import { routes } from './app.routes';
+import { ProjectRoutes } from './app.routes';
 
 import { queryClient } from './utils/react-query-client';
 import { QueryClientProvider } from 'react-query';
@@ -19,11 +19,7 @@ const App: React.FC = () => (
             <Navigation />
 
             <div className="container">
-              <Switch>
-                {routes.map((route, i) => (
-                  <Route exact={route.exact || false} path={route.path} component={route.component} key={i} />
-                ))}
-              </Switch>
+              <ProjectRoutes />
             </div>
           </div>
         </GlobalContext>

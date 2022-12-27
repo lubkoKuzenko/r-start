@@ -1,19 +1,22 @@
-import { useForm } from 'react-hook-form';
+import { FieldValues, useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useTranslation } from 'react-i18next';
-import { IBasicFormValues } from '../interfaces/basic-form';
 
 const BasicFormHook: React.FC = () => {
   const { t } = useTranslation();
 
   const validationSchema = Yup.object({
-    fullName: Yup.string().required(t('GLOBAL.VALIDATION.required')),
-    email: Yup.string().email(t('GLOBAL.VALIDATION.incorrectEmail')).required(t('GLOBAL.VALIDATION.required')),
-    password: Yup.string().required(t('GLOBAL.VALIDATION.required')).min(8, 'Minimum 8 characters'),
+    fullName: Yup.string().required(t('GLOBAL.VALIDATION.required') as string),
+    email: Yup.string()
+      .email(t('GLOBAL.VALIDATION.incorrectEmail') as string)
+      .required(t('GLOBAL.VALIDATION.required') as string),
+    password: Yup.string()
+      .required(t('GLOBAL.VALIDATION.required') as string)
+      .min(8, 'Minimum 8 characters'),
     confirm_password: Yup.string()
       .oneOf([Yup.ref('password')], 'Password is not match!')
-      .required(t('GLOBAL.VALIDATION.required')),
+      .required(t('GLOBAL.VALIDATION.required') as string),
     agreeWithTermsAndConditions: Yup.boolean().oneOf([true], 'Must Accept Terms and Conditions')
   });
 
@@ -29,9 +32,9 @@ const BasicFormHook: React.FC = () => {
     resolver: yupResolver(validationSchema)
   });
 
-  const onSubmit = (data: IBasicFormValues) => {
-      console.log(data)
-      reset()
+  const onSubmit = (data: FieldValues) => {
+    console.log(data);
+    reset();
   };
 
   return (
@@ -43,7 +46,7 @@ const BasicFormHook: React.FC = () => {
           </label>
           <div className="control">
             <input type="text" className="input" placeholder="Full name" {...register('fullName')} />
-            <span className="help is-danger">{errors.fullName?.message}</span>
+            <span className="help is-danger">{errors.fullName?.message as string}</span>
           </div>
         </div>
 
@@ -53,7 +56,7 @@ const BasicFormHook: React.FC = () => {
           </label>
           <div className="control">
             <input type="text" className="input" placeholder="Email address" {...register('email')} />
-            <span className="help is-danger">{errors.email?.message}</span>
+            <span className="help is-danger">{errors.email?.message as string}</span>
           </div>
         </div>
 
@@ -63,7 +66,7 @@ const BasicFormHook: React.FC = () => {
           </label>
           <div className="control">
             <input type="text" className="input" placeholder="Password" {...register('password')} />
-            <span className="help is-danger">{errors.password?.message}</span>
+            <span className="help is-danger">{errors.password?.message as string}</span>
           </div>
         </div>
 
@@ -72,13 +75,8 @@ const BasicFormHook: React.FC = () => {
             Confirm Password
           </label>
           <div className="control">
-            <input
-              type="text"
-              className="input"
-              placeholder="Password"
-              {...register('confirm_password')}
-            />
-            <span className="help is-danger">{errors.confirm_password?.message}</span>
+            <input type="text" className="input" placeholder="Password" {...register('confirm_password')} />
+            <span className="help is-danger">{errors.confirm_password?.message as string}</span>
           </div>
         </div>
 
@@ -88,10 +86,9 @@ const BasicFormHook: React.FC = () => {
               <input type="checkbox" className="mr-2 checkbox" {...register('agreeWithTermsAndConditions')} />I agree to
               the terms and conditions
             </label>
-            <span className="help is-danger">{errors.agreeWithTermsAndConditions?.message}</span>
+            <span className="help is-danger">{errors.agreeWithTermsAndConditions?.message as string}</span>
           </div>
         </div>
-
 
         <button type="submit" className="button is-primary" disabled={!formState.isValid}>
           Submit
