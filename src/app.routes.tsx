@@ -1,6 +1,7 @@
 import loadable from '@loadable/component';
-import { useRoutes } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import Loader from './components/Loader';
+import { formikRoutes } from './pages/Formik/formik.routes';
 
 // const Home = loadable(() => import('./pages/Home/Home'), { fallback: <Loader /> });
 // // const LazyCounter = loadable(() => import('./pages/Counter/Counter'), { fallback: <Loader /> });
@@ -16,47 +17,50 @@ import Loader from './components/Loader';
 export const routes = [
   {
     path: '/',
-    component: 'Home'
+    componentName: 'Home'
   },
   {
     path: '/context',
-    component: 'Context'
+    componentName: 'Context'
   },
   {
     path: '/users',
-    component: 'Users'
+    componentName: 'Users'
   },
   {
     path: '/query',
-    component: 'Query'
+    componentName: 'Query'
   },
   {
     path: '/formik',
-    component: 'Formik'
+    componentName: 'Formik',
+    children: formikRoutes
   },
   {
     path: '/hook-form',
-    component: 'HookForm'
+    componentName: 'HookForm'
   },
   {
     path: '/memory-game',
-    component: 'MemoryGame'
+    componentName: 'MemoryGame'
   },
   {
     path: '/charts',
-    component: 'Charts'
+    componentName: 'Charts'
   }
 ];
 
-const mapRoutesForUse = (routes: { path: string; component: string }[]): any => {
-  return routes.map(({ path, component, children }: any) => {
-    const Component = loadable(() => import(`./pages/${component}/${component}`), { fallback: <Loader /> });
+export const mapRoutes = (routes: any) => {
+  return routes.map(({ path, componentName, component, children }: any, key: any) => {
+    const ComponentLazy = loadable(() => import(`./pages/${componentName}/${componentName}`), { fallback: <Loader /> });
 
-    return {
-      path,
-      element: <Component />,
-      children: children && mapRoutesForUse(children)
-    };
+    return (
+      <Route
+        path={path}
+        key={key}
+        element={component ? component : <ComponentLazy />}
+        children={children && mapRoutes(children)}
+      />
+    );
   });
 };
-export const ProjectRoutes = () => useRoutes(mapRoutesForUse(routes));

@@ -5,23 +5,23 @@ import ReusableForm from './components/ReusableForm';
 
 export const formikRoutes = [
   {
-    path: '/basic',
-    component: BasicForm
+    path: 'basic',
+    component: <BasicForm />
   },
   {
-    path: '/custom-validation',
-    component: CustomValidationForm
+    path: 'custom-validation',
+    component: <CustomValidationForm />
   },
   {
-    path: '/dynamic',
-    component: DynamicForm
+    path: 'dynamic',
+    component: <DynamicForm />
   },
   {
-    path: '/reusable',
-    component: ReusableForm
+    path: 'reusable',
+    component: <ReusableForm />
   },
   {
     path: '*',
-    component: BasicForm
+    component: <BasicForm />
   }
 ];

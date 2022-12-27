@@ -1,7 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Routes, Route, NavLink, useLocation, Outlet } from 'react-router-dom';
-import { formikRoutes } from './formik.routes';
+import { NavLink, useLocation, Outlet } from 'react-router-dom';
 
 const Formik: React.FC = () => {
   const { t } = useTranslation();
@@ -43,12 +42,6 @@ const Formik: React.FC = () => {
       </div>
 
       <section className="tile is-child notification is-white">
-        <Routes>
-          {formikRoutes.map((route, i) => (
-            <Route path={route.path} element={<route.component />} key={i} />
-          ))}
-        </Routes>
-
         <Outlet />
       </section>
     </>
