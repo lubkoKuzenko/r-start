@@ -3,7 +3,8 @@ import Post from './components/Post';
 import Loader from '../../components/Loader';
 import Error from '../../components/Error';
 import { useTranslation } from 'react-i18next';
-import { usePostsData, useUsersData } from './hooks/usePostsData';
+import { useAddUserQuery, useDependentQueries, usePostsData, useUsersData } from './hooks/usePostsData';
+import { IUser } from './interfaces';
 
 const QueryMain: React.FC = () => {
   const { t } = useTranslation();
@@ -36,7 +37,21 @@ const QueryMain: React.FC = () => {
   const { data: posts, error, isLoading, isError, refetch, isFetching } = usePostsData();
   const { data: users } = useUsersData();
 
-  console.log(posts, users);
+  // Dependent Queries
+  const { data: DependentQueries } = useDependentQueries();
+
+  // Mutations [POST]
+  const { mutate } = useAddUserQuery();
+  const handleAddUserClick = () => {
+    const newUser: any = {
+      id: '10',
+      name: 'test user',
+      username: 'test',
+      email: 'test@com.ua'
+    };
+
+    mutate(newUser);
+  };
 
   if (isLoading || isFetching) return <Loader />;
   if (isError) return <Error error={error} />;
@@ -45,11 +60,17 @@ const QueryMain: React.FC = () => {
     <>
       <h1 className="title">{t('Query.title')}</h1>
       <button onClick={() => refetch()}>Fetch</button>
+      <button onClick={() => handleAddUserClick()}>add new user</button>
+      {users?.map((u: IUser, index: number) => (
+        <b key={index}>{u.name}</b>
+      ))}
+
+      <div>DependentQueries = {DependentQueries?.email}</div>
+
       {!posts?.length
         ? 'No items yet...'
         : posts.map(s => (
             <React.Fragment key={s.id}>
-              {}
               <Post post={s}></Post>
             </React.Fragment>
           ))}
