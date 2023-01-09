@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 import Loader from './components/Loader';
 import { formikRoutes } from './pages/Formik/formik.routes';
 import { hookFormRoutes } from './pages/HookForm/hookForm.routes';
+import { queryRoutes } from './pages/Query/query.routes';
 
 // const Home = loadable(() => import('./pages/Home/Home'), { fallback: <Loader /> });
 // // const LazyCounter = loadable(() => import('./pages/Counter/Counter'), { fallback: <Loader /> });
@@ -30,7 +31,8 @@ export const routes = [
   },
   {
     path: '/query',
-    componentName: 'Query'
+    componentName: 'Query',
+    children: queryRoutes
   },
   {
     path: '/formik',
