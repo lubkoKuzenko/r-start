@@ -77,6 +77,17 @@ const Navigation: React.FC = () => {
                   isActive ? styles.selected : ''
                 )
               }
+              to="/counter">
+              Counter
+            </NavLink>
+            <NavLink
+              className={({ isActive }) =>
+                classNames(
+                  'navbar-item',
+                  theme === ThemeEnum.LIGHT ? 'has-text-black' : 'has-text-white',
+                  isActive ? styles.selected : ''
+                )
+              }
               to="/users">
               Users
             </NavLink>

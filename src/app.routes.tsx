@@ -30,6 +30,10 @@ export const routes = [
     componentName: 'Users'
   },
   {
+    path: '/counter',
+    componentName: 'Counter'
+  },
+  {
     path: '/query',
     componentName: 'Query',
     children: queryRoutes
