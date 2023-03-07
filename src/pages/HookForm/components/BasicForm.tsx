@@ -29,7 +29,14 @@ const BasicFormHook: React.FC = () => {
   } = useForm({
     mode: 'onChange',
     reValidateMode: 'onChange',
-    resolver: yupResolver(validationSchema)
+    resolver: yupResolver(validationSchema),
+    defaultValues: {
+      fullName: 'test',
+      email: 'test@un.com',
+      password: '123',
+      confirm_password: '123',
+      agreeWithTermsAndConditions: false
+    }
   });
 
   const onSubmit = (data: FieldValues) => {
