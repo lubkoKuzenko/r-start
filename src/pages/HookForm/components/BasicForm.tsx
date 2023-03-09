@@ -2,14 +2,7 @@ import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useTranslation } from 'react-i18next';
-
-interface IFormInputs {
-  fullName: string;
-  email: string;
-  password: string;
-  confirm_password: string;
-  agreeWithTermsAndConditions: boolean;
-}
+import { IBasicFormValues } from '../interfaces/basic-form';
 
 const BasicFormHook: React.FC = () => {
   const { t } = useTranslation();
@@ -34,7 +27,7 @@ const BasicFormHook: React.FC = () => {
     formState,
     formState: { errors },
     reset
-  } = useForm<IFormInputs>({
+  } = useForm<IBasicFormValues>({
     mode: 'onChange',
     reValidateMode: 'onChange',
     resolver: yupResolver(validationSchema),
@@ -47,7 +40,7 @@ const BasicFormHook: React.FC = () => {
     }
   });
 
-  const onSubmit: SubmitHandler<IFormInputs> = (data: FieldValues) => {
+  const onSubmit: SubmitHandler<IBasicFormValues> = (data: FieldValues) => {
     console.log(data);
     reset();
   };
