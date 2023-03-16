@@ -146,6 +146,17 @@ const Navigation: React.FC = () => {
               to="/charts">
               Charts
             </NavLink>
+            <NavLink
+              className={({ isActive }) =>
+                classNames(
+                  'navbar-item',
+                  theme === ThemeEnum.LIGHT ? 'has-text-black' : 'has-text-white',
+                  isActive ? styles.selected : ''
+                )
+              }
+              to="/patterns">
+              Patterns
+            </NavLink>
           </div>
 
           <LanguageSwitch language={state.language} handleLanguageChange={handleLanguageChange} />

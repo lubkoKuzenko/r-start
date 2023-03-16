@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 import Loader from './components/Loader';
 import { formikRoutes } from './pages/Formik/formik.routes';
 import { hookFormRoutes } from './pages/HookForm/hookForm.routes';
+import { patternsRoutes } from './pages/Patterns/patterns.routes';
 import { queryRoutes } from './pages/Query/query.routes';
 
 // const Home = loadable(() => import('./pages/Home/Home'), { fallback: <Loader /> });
@@ -55,6 +56,11 @@ export const routes = [
   {
     path: '/charts',
     componentName: 'Charts'
+  },
+  {
+    path: '/patterns',
+    componentName: 'Patterns',
+    children: patternsRoutes
   }
 ];
 
