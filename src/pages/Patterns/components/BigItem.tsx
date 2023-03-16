@@ -12,7 +12,6 @@ const BigListItem: React.FC<Props> = ({ user }) => {
         <div className="card mt-2">
           <div className="card-content">
             <h1>{user.username}</h1>
-            <h2>{user.id}</h2>
             <h3>{user.name}</h3>
             <h4>{user.email}</h4>
           </div>
