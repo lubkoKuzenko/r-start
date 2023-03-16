@@ -12,6 +12,9 @@ const NumericList = <T extends IUser>({ data, resourceName, ItemComponent }: Par
     <>
       {data.map((item: IUser, i: number) => (
         <>
+          <small>
+            <b>{i + 1}</b>
+          </small>
           <ItemComponent key={i} {...{ [resourceName]: item }} />
         </>
       ))}
