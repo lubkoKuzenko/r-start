@@ -16,6 +16,9 @@ const Patterns: React.FC = () => {
             <li className={getNavLinkClass(`list`)}>
               <NavLink to={`list`}>Custom list render</NavLink>
             </li>
+            <li className={getNavLinkClass(`recursive-list`)}>
+              <NavLink to={`recursive-list`}>Recursive list</NavLink>
+            </li>
           </ul>
         </div>
       </div>
