@@ -1,3 +1,4 @@
+import CompoundPattern from './Compound';
 import ListPattern from './ListPattern';
 import RecursivePattern from './Recursice';
 
@@ -13,5 +14,9 @@ export const patternsRoutes = [
   {
     path: 'recursive-list',
     component: <RecursivePattern />
+  },
+  {
+    path: 'compound',
+    component: <CompoundPattern />
   }
 ];

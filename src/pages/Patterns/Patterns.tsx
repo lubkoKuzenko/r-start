@@ -19,6 +19,9 @@ const Patterns: React.FC = () => {
             <li className={getNavLinkClass(`recursive-list`)}>
               <NavLink to={`recursive-list`}>Recursive list</NavLink>
             </li>
+            <li className={getNavLinkClass(`compound`)}>
+              <NavLink to={`compound`}>Compound component</NavLink>
+            </li>
           </ul>
         </div>
       </div>
